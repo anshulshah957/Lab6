@@ -7,6 +7,10 @@ public class FirePokemon extends Pokemon {
      */
     final double specProb = 0.2;
     /**
+     * thisProb.
+     */
+    final int thisProb = 5;
+    /**
      * We now have a specialty attack for the fire pokemon! Flame thrower attack!
      */
     public String specialtyAttack;
@@ -58,6 +62,17 @@ public class FirePokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
+        super.attack(opponent);
+        int x = (int) (Math.random() * thisProb);
+        if (opponent.getHitPoints() > 0 && opponent.pokeType != PokemonType.FIRE && x == 0) {
+            System.out.println(this.getName() + " executes a specialty attack... FLAME THROWER!!!");
+            System.out.println(opponent.getName() + " has been defeated!");
+            opponent.setHitPoints(0);
+            return true;
+        }
+        if (opponent.getHitPoints() <= 0) {
+            return true;
+        }
         return false;
     }
 
